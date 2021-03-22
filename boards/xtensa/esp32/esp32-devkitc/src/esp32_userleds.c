@@ -30,6 +30,7 @@
 
 #include <nuttx/board.h>
 #include <arch/board/board.h>
+#include <hardware/esp32_gpio_sigmap.h>
 
 #include "esp32_gpio.h"
 #include "esp32-devkitc.h"
@@ -60,6 +61,7 @@ uint32_t board_userled_initialize(void)
   for (i = 0; i < BOARD_NLEDS; i++)
     {
       esp32_configgpio(g_ledcfg[i], OUTPUT);
+      esp32_gpio_matrix_out(g_ledcfg[i], SIG_GPIO_OUT_IDX, false, false);
     }
 
   return BOARD_NLEDS;
